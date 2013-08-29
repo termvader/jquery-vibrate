@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Jquery-Vibrate : jQuery Vibrating Plugin" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Jquery-Vibrate</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/termvader/jquery-vibrate">View on GitHub</a>
+
+          <h1 id="project_title">Jquery-Vibrate</h1>
+          <h2 id="project_tagline">jQuery Vibrating Plugin</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/termvader/jquery-vibrate/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/termvader/jquery-vibrate/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>About</h1>
+
+<p>jQuery Vibrate Plugin is a jQuery component, self-contained, that allows you to have "vibrating" tags in your page, like buttons, DIVs, etc.
+It is very simple to use and integrate, and lightweight (only 3.54 kB in minified version)!</p>
+
+<p>It was developed by <a href="https://github.com/albertoarena">albertoarena</a>. You can see his version here. The link below to a demo is his site.</p>
+
+<p>I modified it to add the Vibrate for a fixed Period and a callback function when the vibration gets over.</p>
+
+<h1>
+<a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h1>
+
+<h2>
+<a name="for-vibration-based-on-events-and-triggers" class="anchor" href="#for-vibration-based-on-events-and-triggers"><span class="octicon octicon-link"></span></a>For Vibration based on events and triggers</h2>
+
+<p>Check out <a href="https://github.com/albertoarena">albertoarena</a>'s website: <a href="http://www.dev4web.eu/projects/jquery.vibrate/">http://www.dev4web.eu/projects/jquery.vibrate/</a></p>
+
+<h2>
+<a name="fixed-period-of-vibrate" class="anchor" href="#fixed-period-of-vibrate"><span class="octicon octicon-link"></span></a>Fixed Period of Vibrate</h2>
+
+<h1>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h1>
+
+<p>The Vibrate plugin has some configurable options. Below is an example of available options and their defaults:</p>
+
+<h2>
+<a name="vibration-based-on-events-and-triggers" class="anchor" href="#vibration-based-on-events-and-triggers"><span class="octicon octicon-link"></span></a>Vibration based on events and triggers</h2>
+
+<h3>
+<a name="code" class="anchor" href="#code"><span class="octicon octicon-link"></span></a>Code</h3>
+
+<pre><code>$('.vibrate').vibrate({
+   speed: 50,             // Vibration speed in milliseconds
+   trigger: "mouseover",  // Triggering event
+   reverse: false,        // Reverse behaviour
+   overEffect: "stop",    // Over effect, see details below
+   vibrateClass: "",      // CSS class applied when vibrating (New in vers. 1.1!)
+   overClass: "",         // CSS class applied when over effect is triggered (New in vers. 1.1!)
+   callBack: function(){} // Function to call when vibration stops
+});
+</code></pre>
+
+<h3>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h3>
+
+<p><code>speed</code>: Default value is 50 milliseconds, but can be changed</p>
+
+<p><code>trigger</code>: It is the triggering event. Default value is "mouseover", another acceptable value is "focus"; other events are not managed</p>
+
+<p><code>reverse</code>: Default value is false; if true, the behaviour will be reversed. E.g., if triggering event is "mouseover", the tag will always vibrate but stop when mouse is over.</p>
+
+<p><code>overEffect</code>: This is used only when "reverse" parameter is true. The appliable values are "" (empty string), "stop" or "invert". Default value is "stop":</p>
+
+<ul>
+<li>
+<code>overEffect:"stop"</code> (Default value): When mouse is over the vibration will be stopped and it will start again when mouse is out;</li>
+<li>
+<code>overEffect:""</code> (Empty string): When mouse is over the vibration will continue without stopping;</li>
+</ul><p><code>vibrateClass</code>: Name of a CSS class applied when the tag is vibrating, and removed when it stops (default value "")</p>
+
+<p><code>overClass</code>: Name of a CSS class applied when the over effect is triggered, and removed when it ends (default value "")</p>
+
+<p><code>callBack</code>: This function is called whenever vibration stops.</p>
+
+<h2>
+<a name="fixed-period-of-vibrate-1" class="anchor" href="#fixed-period-of-vibrate-1"><span class="octicon octicon-link"></span></a>Fixed Period of Vibrate</h2>
+
+<h3>
+<a name="code-1" class="anchor" href="#code-1"><span class="octicon octicon-link"></span></a>Code</h3>
+
+<pre><code>$('.vibrate').vibrate({
+   speed: 50,             // Vibration speed in milliseconds
+   stopAfterTime: 5       // Stop Vibrating after a fixed time in seconds
+   vibrateClass: "",      // CSS class applied when vibrating (New in vers. 1.1!)
+   callBack: function(){} // Function to call when vibration stops
+});
+</code></pre>
+
+<h3>
+<a name="options-1" class="anchor" href="#options-1"><span class="octicon octicon-link"></span></a>Options</h3>
+
+<p><code>speed</code>: default value is 50 milliseconds, but can be changed</p>
+
+<p><code>stopAfterTime</code>: Stop Vibrating after a fixed time in seconds. No default value. If not provided will follow the vibration based on events and triggers. Providing this it will ignore values of <code>trigger</code>, <code>reverse</code>, <code>overEffect</code>, <code>overClass</code></p>
+
+<p><code>vibrateClass</code>: name of a CSS class applied when the tag is vibrating, and removed when it stops (default value "")</p>
+
+<p><code>callBack</code>: This function is called whenever vibration stops.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Jquery-Vibrate maintained by <a href="https://github.com/termvader">termvader</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-43626008-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
