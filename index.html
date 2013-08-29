@@ -37,7 +37,7 @@
 <p>jQuery Vibrate Plugin is a jQuery component, self-contained, that allows you to have "vibrating" tags in your page, like buttons, DIVs, etc.
 It is very simple to use and integrate, and lightweight (only 3.54 kB in minified version)!</p>
 
-<p>It was developed by <a href="https://github.com/albertoarena">albertoarena</a>. You can see his version here. The link below to a demo is his site.</p>
+<p>It was developed by <a href="https://github.com/albertoarena" target="_blank">albertoarena</a>. You can see his version <a href="https://github.com/albertoarena/jquery-vibrate" target="_blank">here</a>. The link below to a demo is his site.</p>
 
 <p>I modified it to add the Vibrate for a fixed Period and a callback function when the vibration gets over.</p>
 
@@ -45,12 +45,109 @@ It is very simple to use and integrate, and lightweight (only 3.54 kB in minifie
 <a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h1>
 
 <h2>
-<a name="for-vibration-based-on-events-and-triggers" class="anchor" href="#for-vibration-based-on-events-and-triggers"><span class="octicon octicon-link"></span></a>For Vibration based on events and triggers</h2>
+<a name="for-vibration-based-on-events-and-triggers" class="anchor" href="#for-vibration-based-on-events-and-triggers"><span class="octicon octicon-link"></span></a>For Vibration based on events and triggers</h3>
 
 <p>Check out <a href="https://github.com/albertoarena">albertoarena</a>'s website: <a href="http://www.dev4web.eu/projects/jquery.vibrate/">http://www.dev4web.eu/projects/jquery.vibrate/</a></p>
 
 <h2>
-<a name="fixed-period-of-vibrate" class="anchor" href="#fixed-period-of-vibrate"><span class="octicon octicon-link"></span></a>Fixed Period of Vibrate</h2>
+<a name="fixed-period-of-vibrate" class="anchor" href="#fixed-period-of-vibrate"><span class="octicon octicon-link"></span></a>Fixed Period of Vibrate</h3>
+
+<p>Click on the following divs to view the demo</p>
+
+<style type="text/css">
+  #demoDiv{
+    float: none;
+    padding: auto;
+    margin: 10px;
+    display: inline-block;
+    overflow: hidden;
+    width: 220px;
+  }
+  .signals{
+    float: left;
+    margin: 20px;
+    background: none repeat scroll 0 0 #212121;
+    color: #FFF !important;
+    
+    border-radius: 0.33em 0.33em 0.33em 0.33em;
+    font-weight: 400;
+    line-height: 1.5em;
+    padding: 0.5rem 1rem 0.4rem;
+    text-decoration: none;
+    -moz-box-sizing: border-box;
+    width: 160px;
+    text-align: center;
+  }
+  .redSignal{
+    background-color: #FF6666;
+  }
+</style>
+
+<script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script language="javascript" src="javascripts/jquery.vibrate.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+  $('#vib1').on('click', function() {
+    $('#vib1').vibrate({stopAfterTime:2});
+  });
+
+  $('#vib2').on('click', function() {
+    $('#vib2').vibrate({stopAfterTime:5, vibrateClass:'redSignal'});
+  });
+
+  $('#vib3').on('click', function() {
+    $('#vib3').vibrate({stopAfterTime:2, callBack: function() {
+      $('#vib3').text('Vibration Done');
+    }});
+  });
+});
+</script>
+
+<div id="demoDiv">
+  <div class="signals" id="vib1">
+    Vibrate me for 2s
+  </div>
+  <div class="signals" id="vib2">
+    Vibrate me for 5s and turn me red
+  </div>
+  <div class="signals" id="vib3">
+    Change my text
+  </div>
+</div>
+
+<h3>
+<a name="code" class="anchor" href="#code"><span class="octicon octicon-link"></span></a>Code</h3>
+<pre><code>&lt;script language=&quot;javascript&quot; src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script language=&quot;javascript&quot; src=&quot;javascripts/jquery.vibrate.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+$(document).ready(function () {
+  $(&#39;#vib1&#39;).on(&#39;click&#39;, function() {
+    $(&#39;#vib1&#39;).vibrate({stopAfterTime:2});
+  });
+
+  $(&#39;#vib2&#39;).on(&#39;click&#39;, function() {
+    $(&#39;#vib2&#39;).vibrate({stopAfterTime:5, vibrateClass:&#39;redSignal&#39;});
+  });
+
+  $(&#39;#vib3&#39;).on(&#39;click&#39;, function() {
+    $(&#39;#vib3&#39;).vibrate({stopAfterTime:2, callBack: function() {
+      $(&#39;#vib3&#39;).text(&#39;Vibration Done&#39;);
+    }});
+  });
+});
+&lt;/script&gt;
+
+&lt;div id=&quot;demoDiv&quot;&gt;
+  &lt;div class=&quot;signals&quot; id=&quot;vib1&quot;&gt;
+    Vibrate me for 2s
+  &lt;/div&gt;
+  &lt;div class=&quot;signals&quot; id=&quot;vib2&quot;&gt;
+    Vibrate me for 5s and turn me red
+  &lt;/div&gt;
+  &lt;div class=&quot;signals&quot; id=&quot;vib3&quot;&gt;
+    Change my text
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
 
 <h1>
 <a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h1>
@@ -120,13 +217,15 @@ It is very simple to use and integrate, and lightweight (only 3.54 kB in minifie
 <p><code>vibrateClass</code>: name of a CSS class applied when the tag is vibrating, and removed when it stops (default value "")</p>
 
 <p><code>callBack</code>: This function is called whenever vibration stops.</p>
+
+<p>Please note that the element will not vibrate when it already is.</p>
       </section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Jquery-Vibrate maintained by <a href="https://github.com/termvader">termvader</a></p>
+        <p class="copyright">Jquery-Vibrate developed by <a href="https://github.com/albertoarena" target="_blank">albertoarena</a>and modified by <a href="https://github.com/termvader" target="_blank">termvader</a></p>
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
